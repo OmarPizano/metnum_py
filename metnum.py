@@ -61,16 +61,19 @@ def fixpt(f, x0, err, imax, rr):
     return xr
 
 # df = derivada de f.
-def newton_raphson(f, df, x0, err, imax, rr):
+def newton_raphson(f, df, x0, err, imax, rr, verbose):
     i = 0
     xr = x0
+    if verbose:
+        print("N°\tx0\txr\terr_a\terr_t\n"+"-"*50)
     while True:
         xrold = xr
         xr = xrold - f(xr) / df(xr)
         if xr != 0:
             err_a = abs((xr - xrold) / xr) * 100
         err_t = abs(rr - xr)
-        print("{}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}".format(i,x0,xr,err_a,err_t))
+        if verbose:
+            print("{}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}".format(i,x0,xr,err_a,err_t))
         if err_a < err or i >= imax:
             break
         i += 1
