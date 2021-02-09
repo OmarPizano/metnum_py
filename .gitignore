@@ -1,5 +1,5 @@
 # Archivos extra
-test.py
+test*.py
 *.swp
 
 # Byte-compiled / optimized / DLL files
