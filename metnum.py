@@ -45,9 +45,11 @@ def falsepos(f, xl, xu, xr, err, err_a, i, imax, rr):
         xr = bisection(f,xl,xu,xr,err,err_a,i,imax, rr)
     return xr
 
-def fixpt(f, x0, err, imax, rr):
+def fixpt(f, x0, err, imax, rr, verbose):
     i = 0
     xr = x0
+    if verbose:
+        print("N°\tx0\txr\terr_a\terr_t\n"+"-"*50)
     while True:
         xrold = xr
         xr = f(xrold)
@@ -55,7 +57,8 @@ def fixpt(f, x0, err, imax, rr):
         if xr != 0:
             err_a = abs((xr - xrold) / xr) * 100
         err_t = abs(rr - xr)
-        print("{}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}".format(i,x0,xr,err_a,err_t))
+        if verbose:
+            print("{}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}".format(i,x0,xr,err_a,err_t))
         if err_a < err or i >= imax:
             break
     return xr
