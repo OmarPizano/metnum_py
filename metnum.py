@@ -22,7 +22,8 @@ def bisection(function, lower_x, upper_x, real_root = False, error_limit = 0.5, 
         iteration += 1
         current_data.extend([iteration, lower_x, upper_x, root, old_root])
         if root != 0:
-            relative_error = abs((root - old_root)/ root ) * 100
+#            relative_error = abs((root - old_root) / root ) * 100
+            relative_error = abs((upper_x - lower_x) / (upper_x + lower_x)) * 100
             current_data.append(relative_error)
         test = function(lower_x) *  function(root)
         if test < 0:
