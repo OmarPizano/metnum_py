@@ -3,7 +3,7 @@ def bisection(function, lower_x, upper_x, real_root = False, error_limit = 0.5, 
     tableline = 55      # tamaño de las líneas de la tabla
     iteration = 0       # contador de iteración
     root = 0            # raíz inicial
-    results = []        # matriz para los datos de la tabla
+    table_data = []     # matriz para los datos de la tabla
     # resumen de los datos de entrada
     if summary:
         summ = "\nFunction: " + str(getsourcelines(function)[0][0][:-1].split(":")[1][1:])
@@ -16,11 +16,14 @@ def bisection(function, lower_x, upper_x, real_root = False, error_limit = 0.5, 
         print(summ)
     # algoritmo de BISECCIÓN
     while True:
+        current_data = []   # lista para los datos de la iteración actual    
         old_root = root
         root = (lower_x + upper_x) / 2
         iteration += 1
+        current_data.extend([iteration, lower_x, upper_x, root, old_root])
         if root != 0:
             relative_error = abs((root - old_root)/ root ) * 100
+            current_data.append(relative_error)
         test = function(lower_x) *  function(root)
         if test < 0:
             upper_x = root
@@ -33,15 +36,16 @@ def bisection(function, lower_x, upper_x, real_root = False, error_limit = 0.5, 
             real_error = abs((real_root - root) / real_root) * 100
         else:
             real_error = "---"
+        current_data.append(real_error)
         # en este punto, ya se calcularon todos los datos de esta iteración, por lo que se añaden
-        results.append([iteration, lower_x, upper_x, root, old_root, relative_error, real_error])
+        table_data.append(current_data)
         # condición de parada
         if relative_error < error_limit or iteration >= max_iteration:
             break
     # tabla con los datos de cada iteración
     if table:
         print("ITER\tXL\tXU\tR\tOLD_R\tERR_A\tERR_R\n" + "-" * tableline)
-        for row in results:
+        for row in table_data:
             if real_root:
                 print("{}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t{:.3f}\t".format(\
                         row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
