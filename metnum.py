@@ -16,7 +16,7 @@ def bisection(function, lower_x, upper_x, real_root = False, error_limit = 0.5, 
         print(summ)
     # algoritmo de BISECCIÓN
     while True:
-        current_data = []   # lista para los datos de la iteración actual    
+        current_data = []   # lista para los datos de la iteración actual
         old_root = root
         root = (lower_x + upper_x) / 2
         iteration += 1
