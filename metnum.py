@@ -117,14 +117,14 @@ def convergence_criteria(a):
     else:
         return False
 
-def norm(a,b):
+def norm(a, prev):
     # norma entre 2 vectores (asumimos que tienen el mismo tamaño)
     summ = 0
     for i in range(len(a)):
-        summ = summ + (a[i] - b[i]) ** 2
+        summ = summ + (a[i] - prev[i]) ** 2
     return sqrt(summ)
 
-def jacobi(a, b, xprev, max_iter = 25, tolerance = 0.0005):
+def jacobi(a, b, x_prev, max_iter = 25, tolerance = 0.0005):
     k = 0
     while True:
         x_aprox = []
@@ -132,11 +132,11 @@ def jacobi(a, b, xprev, max_iter = 25, tolerance = 0.0005):
             Rx = 0
             for j in range(0,len(a)):
                 if j != i:
-                    Rx = Rx + a[i][j] * xprev[j]
+                    Rx = Rx + a[i][j] * x_prev[j]
             x_aprox.append((b[i] - Rx) / a[i][i])
-        if k > max_iter or norm(x_aprox, xprev) < tolerance:
+        if k > max_iter or norm(x_aprox, x_prev) < tolerance:
             break
         else:
-            xprev = x_aprox
+            x_prev = x_aprox
             k += 1
     return x_aprox
