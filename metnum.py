@@ -1,4 +1,3 @@
-from inspect import getsourcelines
 def bisection(function, lower_x, upper_x, error_limit = 0.5, max_iteration = 20):
     iteration = 0
     root = 0
