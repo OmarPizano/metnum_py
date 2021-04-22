@@ -125,18 +125,21 @@ def norm(a, prev):
     return sqrt(summ)
 
 def jacobi(a, b, x_prev, max_iter = 25, tolerance = 0.0005):
-    k = 0
-    while True:
-        x_aprox = []
-        for i in range(0,len(a)):
-            Rx = 0
-            for j in range(0,len(a)):
-                if j != i:
-                    Rx = Rx + a[i][j] * x_prev[j]
-            x_aprox.append((b[i] - Rx) / a[i][i])
-        if k > max_iter or norm(x_aprox, x_prev) < tolerance:
-            break
-        else:
-            x_prev = x_aprox
-            k += 1
-    return x_aprox
+    if convergence_criteria(a):
+        k = 0
+        while True:
+            x_aprox = []
+            for i in range(0,len(a)):
+                Rx = 0
+                for j in range(0,len(a)):
+                    if j != i:
+                        Rx = Rx + a[i][j] * x_prev[j]
+                x_aprox.append((b[i] - Rx) / a[i][i])
+            if k > max_iter or norm(x_aprox, x_prev) < tolerance:
+                break
+            else:
+                x_prev = x_aprox
+                k += 1
+        return x_aprox
+    else:
+        return None
