@@ -99,8 +99,30 @@ def secant_mod(function, init_x, inc_x = 0.01, error_limit = 0.5, max_iteration 
             break
     return root
 
-# TODO: Función para verificar el criterio de convergencia
-# TODO: Función para calcular la norma y parar las iteraciones. Añadir
+def convergence_criteria(a):
+    sufficient_criteria = required_criteria = len(a)
+    for i in range(0,len(a)):
+        # cond. necesaria: el término de la diagonal es mayor al resto
+        aux = a[i].copy()
+        d = aux.pop(i)
+        aux.sort(reverse = True)
+        if d > aux[0]:
+            required_criteria -= 1
+        # cond. suficiente: el término de la diagonal es mayor a la sumatoria del resto
+        if a[i][i] >= sum( [ abs(ele) for ele in a[i] ] ) - a[i][i]:
+            sufficient_criteria -= 1
+    if sufficient_criteria == 0 and required_criteria == 0:
+        return True
+    else:
+        return False
+
+def norm(a,b):
+    # norma entre 2 vectores (asumimos que tienen el mismo tamaño)
+    summ = 0
+    for i in range(len(a)):
+        summ = summ + (a[i] - b[i]) ** 2
+    return sqrt(summ)
+
 def jacobi(a, b, xprev, max_iter = 25):
     k = 0
     while k < max_iter:
