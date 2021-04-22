@@ -1,3 +1,4 @@
+# TODO: documentar
 def bisection(function, lower_x, upper_x, error_limit = 0.5, max_iteration = 20):
     iteration = 0
     root = 0
@@ -18,6 +19,7 @@ def bisection(function, lower_x, upper_x, error_limit = 0.5, max_iteration = 20)
             break
     return root
 
+# TODO: documentar
 def falsepos(function, lower_x, upper_x, error_limit = 0.5, max_iteration = 20):
     iteration = 0
     root = 0
@@ -38,6 +40,7 @@ def falsepos(function, lower_x, upper_x, error_limit = 0.5, max_iteration = 20):
             break
     return root
 
+# TODO: documentar
 def fixpt(function, init_x, error_limit = 0.5, max_iteration = 20):
     iteration = 0
     root = init_x
@@ -52,6 +55,7 @@ def fixpt(function, init_x, error_limit = 0.5, max_iteration = 20):
             break
     return root
 
+# TODO: documentar
 def newton_raphson(function, derivative, init_x, error_limit = 0.5, max_iteration = 20):
     iteration = 0
     root = init_x
@@ -65,6 +69,7 @@ def newton_raphson(function, derivative, init_x, error_limit = 0.5, max_iteratio
             break
     return root
 
+# TODO: documentar
 def secant(function, init_x, prev_x, error_limit = 0.5, max_iteration = 20):
     iteration = 0
     root = init_x
@@ -80,6 +85,7 @@ def secant(function, init_x, prev_x, error_limit = 0.5, max_iteration = 20):
             break
     return root
 
+# TODO: documentar
 def secant_mod(function, init_x, inc_x = 0.01, error_limit = 0.5, max_iteration = 20):
     iteration = 0
     root = init_x
