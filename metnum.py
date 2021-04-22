@@ -1,3 +1,4 @@
+from math import sqrt
 # TODO: documentar
 def bisection(function, lower_x, upper_x, error_limit = 0.5, max_iteration = 20):
     iteration = 0
@@ -123,9 +124,9 @@ def norm(a,b):
         summ = summ + (a[i] - b[i]) ** 2
     return sqrt(summ)
 
-def jacobi(a, b, xprev, max_iter = 25):
+def jacobi(a, b, xprev, max_iter = 25, tolerance = 0.0005):
     k = 0
-    while k < max_iter:
+    while True:
         x_aprox = []
         for i in range(0,len(a)):
             Rx = 0
@@ -133,6 +134,9 @@ def jacobi(a, b, xprev, max_iter = 25):
                 if j != i:
                     Rx = Rx + a[i][j] * xprev[j]
             x_aprox.append((b[i] - Rx) / a[i][i])
-        xprev = x_aprox
-        k += 1
-    return xprev
+        if k > max_iter or norm(x_aprox, xprev) < tolerance:
+            break
+        else:
+            xprev = x_aprox
+            k += 1
+    return x_aprox
