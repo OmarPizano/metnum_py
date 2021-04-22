@@ -101,7 +101,7 @@ def secant_mod(function, init_x, inc_x = 0.01, error_limit = 0.5, max_iteration 
 
 # TODO: Función para verificar el criterio de convergencia
 # TODO: Función para calcular la norma y parar las iteraciones. Añadir
-def jacobi(a,b,xprev,max_iter):
+def jacobi(a, b, xprev, max_iter = 25):
     k = 0
     while k < max_iter:
         x_aprox = []
