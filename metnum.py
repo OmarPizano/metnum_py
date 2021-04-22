@@ -226,7 +226,7 @@ def secant(function, init_x, prev_x, real_root, error_limit = 0.5, max_iteration
         summ += "\n"
         print(summ)
     while True:
-        current_data = []   # lista para los datos de la iteración actual 
+        current_data = []   # lista para los datos de la iteración actual
         old_root = root
         root = root - (function(root) * (prev_x - root)) / (function(prev_x) - function(root))
         prev_x = old_root
@@ -275,7 +275,7 @@ def secant_mod(function, init_x, real_root, inc_x = 0.01, error_limit = 0.5, max
         summ += "\n"
         print(summ)
     while True:
-        current_data = []   # lista para los datos de la iteración actual 
+        current_data = []   # lista para los datos de la iteración actual
         old_root = root
         root = root - (inc_x * root * function(root)) / (function(root + inc_x*root) - function(root))
         iteration += 1
