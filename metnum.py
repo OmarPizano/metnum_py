@@ -98,3 +98,19 @@ def secant_mod(function, init_x, inc_x = 0.01, error_limit = 0.5, max_iteration 
         if relative_error < error_limit or iteration >= max_iteration:
             break
     return root
+
+# TODO: Función para verificar el criterio de convergencia
+# TODO: Función para calcular la norma y parar las iteraciones. Añadir
+def jacobi(a,b,xprev,max_iter):
+    k = 0
+    while k < max_iter:
+        x_aprox = []
+        for i in range(0,len(a)):
+            Rx = 0
+            for j in range(0,len(a)):
+                if j != i:
+                    Rx = Rx + a[i][j] * xprev[j]
+            x_aprox.append((b[i] - Rx) / a[i][i])
+        xprev = x_aprox
+        k += 1
+    return xprev
