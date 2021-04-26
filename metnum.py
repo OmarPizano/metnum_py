@@ -146,3 +146,26 @@ def jacobi(a, b, x_prev, max_iter = 25, tolerance = 0.0005):
         return x_aprox
     else:
         return None
+
+# TODO: Añadir el número de iteraciones a la salida.
+def gauss_seidel(a, b, x_prev, max_iter = 25, tolerance = 0.0005):
+    if convergence_criteria(a):
+        k = 0
+        while True:
+            x_aprox = x_prev.copy()
+            for i in range(0,len(a)):
+                Rx = 0
+                for j in range(0,len(a)):
+                    if j != i:
+                        Rx = Rx + a[i][j] * x_aprox[j]
+                x_aprox[i] = (b[i] - Rx) / a[i][i]
+            if k > max_iter or norm(x_aprox, x_prev) < tolerance:
+                print(k)    # debug
+                break
+            else:
+                x_prev = x_aprox
+                k += 1
+            print(x_aprox)  # debug
+        return x_aprox
+    else:
+        return None
