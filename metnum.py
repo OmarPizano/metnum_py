@@ -125,6 +125,7 @@ def norm(a, prev):
     return sqrt(summ)
 
 # TODO: Añadir el número de iteraciones a la salida.
+# TODO: Parámetro para ignorar total o parcialmente el criterio de convergencia.
 def jacobi(a, b, x_prev, max_iter = 25, tolerance = 0.0005):
     if convergence_criteria(a):
         k = 0
@@ -148,6 +149,7 @@ def jacobi(a, b, x_prev, max_iter = 25, tolerance = 0.0005):
         return None
 
 # TODO: Añadir el número de iteraciones a la salida.
+# TODO: Parámetro para ignorar total o parcialmente el criterio de convergencia.
 def gauss_seidel(a, b, x_prev, max_iter = 25, tolerance = 0.0005):
     if convergence_criteria(a):
         k = 0
