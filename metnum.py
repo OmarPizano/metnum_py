@@ -124,6 +124,7 @@ def norm(a, prev):
         summ = summ + (a[i] - prev[i]) ** 2
     return sqrt(summ)
 
+# TODO: Añadir el número de iteraciones a la salida.
 def jacobi(a, b, x_prev, max_iter = 25, tolerance = 0.0005):
     if convergence_criteria(a):
         k = 0
@@ -136,10 +137,12 @@ def jacobi(a, b, x_prev, max_iter = 25, tolerance = 0.0005):
                         Rx = Rx + a[i][j] * x_prev[j]
                 x_aprox.append((b[i] - Rx) / a[i][i])
             if k > max_iter or norm(x_aprox, x_prev) < tolerance:
+                print(k)    # debug
                 break
             else:
                 x_prev = x_aprox
                 k += 1
+            print(x_aprox)  # debug
         return x_aprox
     else:
         return None
