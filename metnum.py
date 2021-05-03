@@ -110,7 +110,7 @@ def convergence_criteria(a):
         if d > aux[0]:
             required_criteria -= 1
         # cond. suficiente: el término de la diagonal es mayor a la sumatoria del resto
-        if a[i][i] >= sum( [ abs(ele) for ele in a[i] ] ) - a[i][i]:
+        if a[i][i] >= sum(a[i]) - a[i][i]:
             sufficient_criteria -= 1
     if sufficient_criteria == 0 and required_criteria == 0:
         return True
